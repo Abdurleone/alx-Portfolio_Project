@@ -13,11 +13,16 @@ const connect = async ()=>{
     }
 };
 
-mongoose.connection.on("disconnected", ()=>{
-    console.log("mongoDB disconnected")
-})
-mongoose.connection.on("Connected", ()=>{
-    console.log("mongoDB Connected")
+mongoose.connection.on("connected", () => {
+    console.log("MongoDB Connected!");
+});
+
+mongoose.connection.on("disconnected", () => {
+    console.log("MongoDB Disconnected!");
+});
+
+app.get("/" , (req, res)=>{
+    res.send("hello first request!")
 })
 
 app.listen(8800, () => {
